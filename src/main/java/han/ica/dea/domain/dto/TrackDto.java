@@ -1,6 +1,8 @@
 package han.ica.dea.domain.dto;
 
-public class TrackDto {
+import java.io.Serializable;
+
+public class TrackDto implements Serializable {
 
     private int id;
     private int duration;

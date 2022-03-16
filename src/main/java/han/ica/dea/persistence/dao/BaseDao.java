@@ -8,7 +8,7 @@ import han.ica.dea.persistence.context.DbConnection;
 import java.util.logging.Logger;
 
 public abstract class BaseDao implements IBaseDao<DbConnection> {
-
+	
 	protected Logger logger = Logger.getLogger(getClass().getName());
 	
 	protected DbConnection con;
@@ -23,5 +23,5 @@ public abstract class BaseDao implements IBaseDao<DbConnection> {
     public DbConnection getConnection() {
         return this.con;
     }
-
+    
 }

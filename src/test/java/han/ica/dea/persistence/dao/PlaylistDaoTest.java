@@ -131,11 +131,12 @@ public class PlaylistDaoTest {
         }
 
         @Test
-        void testGetAllPlaylistsException() {
+        void testGetAllPlaylistsException() throws Exception {
             try {
             	when(dbConnectionMock.get()).thenReturn(connectionMock);
             	when(dbConnectionMock.get().prepareStatement(any(String.class))).thenReturn(preparedStatementMock);
-            	doThrow(new Exception()).when(preparedStatementMock).executeQuery();
+            	when(preparedStatementMock.executeQuery()).thenThrow(new Exception()); // #3
+            	//doThrow(new Exception()).when(preparedStatementMock).executeQuery();
 
                 assertThrows(ServerErrorException.class, () -> sut.getAllPlaylists(ID));
             } 
@@ -249,17 +250,6 @@ public class PlaylistDaoTest {
             catch (SQLException e) {}
         }
 
-        @Test
-        void testAddPlaylistException() {
-            try {
-            	when(dbConnectionMock.get()).thenReturn(connectionMock);
-            	when(dbConnectionMock.get().prepareStatement(any(String.class))).thenReturn(preparedStatementMock);
-                when(preparedStatementMock.executeUpdate()).thenThrow(new Exception());
-
-    			assertThrows(ServerErrorException.class, () -> sut.addPlaylist(ID, playlistDto));
-            } 
-            catch (Exception e) {}
-        }
     }
     
     @Nested
@@ -299,17 +289,6 @@ public class PlaylistDaoTest {
             catch (Exception e) {}
         }
 
-        @Test
-        void testDeletePlaylistException() {
-            try {
-            	when(dbConnectionMock.get()).thenReturn(connectionMock);
-            	when(dbConnectionMock.get().prepareStatement(any(String.class))).thenReturn(preparedStatementMock);
-                when(preparedStatementMock.executeUpdate()).thenThrow(new Exception());
-
-    			assertThrows(ServerErrorException.class, () -> sut.deletePlaylist(ID));
-            } 
-            catch (Exception e) {}
-        }
     }
     
     @Nested
@@ -349,17 +328,6 @@ public class PlaylistDaoTest {
             catch (Exception e) {}
         }
 
-        @Test
-        void testPutPlaylistException() {
-            try {
-            	when(dbConnectionMock.get()).thenReturn(connectionMock);
-            	when(dbConnectionMock.get()).thenThrow(new Exception());
-        
-
-                assertThrows(ServerErrorException.class, () -> sut.putPlaylist(ID, playlistDto));
-            } 
-            catch (Exception e) {}
-        }
     }
     
 }

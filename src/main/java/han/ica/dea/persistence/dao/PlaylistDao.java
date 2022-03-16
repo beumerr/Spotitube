@@ -128,10 +128,6 @@ public class PlaylistDao extends BaseDao implements IPlaylistDao<PlaylistsDataMa
             	throw new DbConnectionException();
             }
     	}
-        catch(Exception e) {
-        	logger.log(Level.SEVERE, "Got internal error on `addPlaylist` request", e);
-        	throw new ServerErrorException();
-        }
     }
 	
 	@Override
@@ -149,10 +145,6 @@ public class PlaylistDao extends BaseDao implements IPlaylistDao<PlaylistsDataMa
 			logger.log(Level.WARNING, "Can not delete playlist", e);
 			throw new BadRequestException();
 		}
-		catch(Exception e) {
-        	logger.log(Level.SEVERE, "Got internal error on `deletePlaylist` request", e);
-        	throw new ServerErrorException();
-        }
     }
 	
 	@Override
@@ -171,10 +163,6 @@ public class PlaylistDao extends BaseDao implements IPlaylistDao<PlaylistsDataMa
 			logger.log(Level.WARNING, "Can not delete playlist", e);
 			throw new BadRequestException();
 		}
-		catch(Exception e) {
-        	logger.log(Level.SEVERE, "Got internal error on `putPlaylist` request", e);
-        	throw new ServerErrorException();
-        }
     }
 
 }

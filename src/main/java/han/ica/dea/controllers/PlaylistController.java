@@ -73,7 +73,7 @@ public class PlaylistController {
     		) {
     	return Response
                 .status(Response.Status.OK)
-                .entity(playlistService.getTracksFromPlaylist(id, userId))
+                .entity(playlistService.getTracksFromPlaylist(id))
                 .build();
     }
     

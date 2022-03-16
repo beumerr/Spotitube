@@ -2,19 +2,22 @@ package han.ica.dea.persistence.dao;
 
 import javax.inject.Inject;
 
+import org.ehcache.Cache;
+
 import han.ica.dea.domain.dto.TrackDto;
 import han.ica.dea.domain.dto.TracksDto;
 import han.ica.dea.domain.exceptions.BadRequestException;
 import han.ica.dea.domain.exceptions.DbConnectionException;
 import han.ica.dea.domain.exceptions.ServerErrorException;
 import han.ica.dea.domain.interfaces.dao.ITrackDao;
+import han.ica.dea.persistence.cache.CacheHelper;
 import han.ica.dea.persistence.mappings.data.TracksDataMapper;
 
 import java.sql.*;
 import java.util.logging.Level;
 
 public class TrackDao extends BaseDao implements ITrackDao<TracksDataMapper> {
-
+	
     private TracksDataMapper tracksDataMapper;
     
     @Inject 
@@ -43,7 +46,7 @@ public class TrackDao extends BaseDao implements ITrackDao<TracksDataMapper> {
             ps.setInt(1, playlistId);
             ResultSet rs = ps.executeQuery();            
             TracksDto tracksDto = tracksDataMapper.mapToDTO(rs);
-            
+           
             con.close();
             return tracksDto;
     	}

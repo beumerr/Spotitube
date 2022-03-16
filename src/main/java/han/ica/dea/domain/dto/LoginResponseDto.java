@@ -1,6 +1,8 @@
 package han.ica.dea.domain.dto;
 
-public class LoginResponseDto {
+import java.io.Serializable;
+
+public class LoginResponseDto implements Serializable  {
 	
 	private String user;
     private String token;
@@ -26,5 +28,10 @@ public class LoginResponseDto {
 
     public void setToken(String token) {
         this.token = token;
+    }
+    
+    @Override
+    public String toString() {
+        return "LoginResponseDto{token='" + token + "', user='" + token + "'}";
     }
 }

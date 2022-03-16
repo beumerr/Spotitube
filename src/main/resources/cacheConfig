@@ -1,0 +1,40 @@
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd">
+    
+    <persistence directory="${java.io.tmpdir}/spotitube-cache"/>
+    
+	<cache-template name="tiered-cache">
+        <resources>
+            <heap unit="MB">100</heap>
+            <offheap unit="MB">500</offheap>
+            <disk unit="MB" persistent="true">1000</disk>
+        </resources>
+    </cache-template>
+    
+    <cache alias="session">
+        <key-type>java.lang.String</key-type>
+        <value-type>han.ica.dea.domain.dto.LoginResponseDto</value-type>
+	  	<expiry>
+			<ttl unit="seconds">86400</ttl> 
+		</expiry>
+        <heap unit="entries">1000</heap>
+    </cache>
+	
+    <cache alias="tracks" uses-template="tiered-cache">
+        <key-type>java.lang.Integer</key-type>
+        <value-type>han.ica.dea.domain.dto.TracksDto</value-type>
+    </cache>
+    
+    <cache alias="playlists" uses-template="tiered-cache">
+        <key-type>java.lang.Integer</key-type>
+        <value-type>han.ica.dea.domain.dto.PlaylistsDto</value-type>
+    </cache>
+    
+    <cache alias="tracks-not-in-playlists" uses-template="tiered-cache">
+        <key-type>java.lang.Integer</key-type>
+        <value-type>han.ica.dea.domain.dto.TracksDto</value-type>
+    </cache>
+    
+</config>

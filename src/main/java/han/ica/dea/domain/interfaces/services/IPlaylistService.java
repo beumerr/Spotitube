@@ -44,7 +44,7 @@ public interface IPlaylistService {
      * @param playlistId The playlist ID used to get tracks from
      * @return A TracksDto containing all tracks from corresponding playlist ID
      */
-	TracksDto getTracksFromPlaylist(int id, int userId);
+	TracksDto getTracksFromPlaylist(int id);
 	
 	/**
      * Add track to playlist

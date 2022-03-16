@@ -1,8 +1,9 @@
 package han.ica.dea.domain.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PlaylistsDto {
+public class PlaylistsDto implements Serializable {
 
     private ArrayList<PlaylistDto> playlists;
     private int length;

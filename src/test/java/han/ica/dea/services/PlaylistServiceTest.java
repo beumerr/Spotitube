@@ -221,7 +221,7 @@ public class PlaylistServiceTest {
         public void testGetTracksFromPlaylist() {
         	var expected = tracksDto;
         	when(trackDaoMock.getTracksFromPlaylist(playlistId)).thenReturn(expected);
-            var result = sut.getTracksFromPlaylist(playlistId, userId);
+            var result = sut.getTracksFromPlaylist(playlistId);
             
             assertEquals(expected, result);
         }
@@ -231,7 +231,7 @@ public class PlaylistServiceTest {
         	var expected = new BadRequestException();
         	doThrow(expected).when(trackDaoMock).getTracksFromPlaylist(playlistId);
 
-        	assertThrows(BadRequestException.class, () -> sut.getTracksFromPlaylist(playlistId, userId));
+        	assertThrows(BadRequestException.class, () -> sut.getTracksFromPlaylist(playlistId));
         }
         
         @Test
@@ -239,12 +239,12 @@ public class PlaylistServiceTest {
         	var expected = new ServerErrorException();
         	doThrow(expected).when(trackDaoMock).getTracksFromPlaylist(playlistId);
 
-        	assertThrows(ServerErrorException.class, () -> sut.getTracksFromPlaylist(playlistId, userId));
+        	assertThrows(ServerErrorException.class, () -> sut.getTracksFromPlaylist(playlistId));
         }
         
         @Test
         public void testGetTracksFromPlaylistCalls() {
-    		sut.getTracksFromPlaylist(playlistId, userId);
+    		sut.getTracksFromPlaylist(playlistId);
       
             verify(trackDaoMock, times(1)).getTracksFromPlaylist(playlistId);
         }

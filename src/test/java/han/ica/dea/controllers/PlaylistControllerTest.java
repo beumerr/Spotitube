@@ -238,7 +238,7 @@ public class PlaylistControllerTest {
         @Test
         public void testGetTracksFromPlaylistBadRequestException() {
             var expected = new BadRequestException();
-            when(playlistServiceMock.getTracksFromPlaylist(playlistId, userId)).thenThrow(expected);
+            when(playlistServiceMock.getTracksFromPlaylist(playlistId)).thenThrow(expected);
 
             assertThrows(BadRequestException.class, () -> sut.getTracksFromPlaylist(playlistId, userId));
         }
@@ -246,7 +246,7 @@ public class PlaylistControllerTest {
         @Test
         public void testGetTracksFromPlaylistServerErrorException() {
             var expected = new ServerErrorException();
-            when(playlistServiceMock.getTracksFromPlaylist(playlistId, userId)).thenThrow(expected);
+            when(playlistServiceMock.getTracksFromPlaylist(playlistId)).thenThrow(expected);
 
             assertThrows(ServerErrorException.class, () -> sut.getTracksFromPlaylist(playlistId, userId));
         }
@@ -255,7 +255,7 @@ public class PlaylistControllerTest {
         public void testGetTracksFromPlaylistCalls() {
             sut.getTracksFromPlaylist(playlistId, userId);
 
-            verify(playlistServiceMock, times(1)).getTracksFromPlaylist(playlistId, userId);
+            verify(playlistServiceMock, times(1)).getTracksFromPlaylist(playlistId);
         }
     }
     

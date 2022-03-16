@@ -46,13 +46,6 @@ public class AuthorizationRequestFilterTest  {
 		uriInfo.add("token", TOKEN);
 	}
 	
-	@Test
-    public void testGetLoginDao() {
-		var expected = loginDaoMock;
-		var result = sut.getLoginDao();
-		
-		assertEquals(expected, result);
-    }
 	
 	@Nested
 	@DisplayName("`filter` tests")

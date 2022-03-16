@@ -5,7 +5,7 @@ import javax.inject.Inject;
 public abstract interface IBaseMapper<T>  {
 	
 	 /**
-     * Set data mapper to convert DB result set to object
+     * Set data mapper (to convert DB results into objects)
      *
      * @param userId The user ID to get playlists from
      */
